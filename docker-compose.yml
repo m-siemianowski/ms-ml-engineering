@@ -1,0 +1,24 @@
+
+version: '3.8'
+services:
+  api:
+    build: ./04_mlops_pipeline/api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mlflow
+  mlflow:
+    image: bitnami/mlflow:2
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_SERVER_FILESTORE=/mlflow
+    volumes:
+      - ./04_mlops_pipeline/mlflow:/mlflow
+  # Minimal placeholder for airflow if you want to add it locally (optional heavy service)
+  # airflow:
+  #   image: apache/airflow:2.6.3
+  #   environment:
+  #     - _PIP_ADDITIONAL_REQUIREMENTS=apache-airflow-providers-amazon
+  #   ports:
+  #     - "8080:8080"
