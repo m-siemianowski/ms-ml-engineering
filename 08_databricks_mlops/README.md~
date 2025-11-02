@@ -1,0 +1,19 @@
+# 08_databricks_mlops — Databricks and Scalable ML Pipelines
+
+This module focuses on developing and deploying machine learning workflows in **Databricks** — a cloud-based platform integrating **Apache Spark**, **Delta Lake**, and **MLflow**.  
+The goal is to bridge the gap between traditional local ML development and large-scale, production-grade data and model pipelines.
+
+---
+
+## 🎯 Objectives
+
+- Learn to use Databricks for data ingestion, feature engineering, model training, and deployment.  
+- Understand how to integrate **Spark** with ML workflows (batch & streaming).  
+- Build scalable MLOps pipelines leveraging **Delta Lake** and **MLflow**.  
+- Practice collaborative, version-controlled development within the Databricks environment.
+
+---
+
+## 📁 Structure
+
+
