@@ -1,6 +1,6 @@
 
 data:
-  path: data/wig20.csv
+  path: data/wig20_daily.csv
   date_col: date
   target_col: close
 
