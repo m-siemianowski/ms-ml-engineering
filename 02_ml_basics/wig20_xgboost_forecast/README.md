@@ -32,3 +32,5 @@ python src/predict.py
 ## Notes
 - The sample CSV is *synthetic* and only for demo. Replace `data/wig20.csv` with real data for better results.
 - Next steps: hyperparameter tuning, cross-validation (TimeSeriesSplit), backtesting and API serving.
+
+
