@@ -1,25 +1,37 @@
-
 # ms-ml-engineering
 
-Portfolio repository skeleton for transition from Senior Data Developer → Machine Learning / AI Engineer.
-Full Hybrid track: Forecasting (time series) + AI/NLP (HuggingFace).
+A structured portfolio repository showcasing **Machine Learning, Deep Learning, MLOps, and Cloud deployment workflows**.
+Includes project templates, deployment scaffolding, and demonstration pipelines for both **time series forecasting** and **NLP (HuggingFace)** applications.
 
-This repo contains a structured set of project templates, deployment configs and MLOps scaffolding:
-- Local Docker Compose demo for API + MLflow + (light) services
-- Cloud deployment examples for AWS SageMaker and GCP Vertex AI (templates & instructions)
-- Project templates: Python advanced, ML basics, Deep Learning forecasting, NLP, MLOps pipeline, Cloud examples
-- CI config, pre-commit and basic GitHub Actions workflow template
+## Features
 
-## Quick start (local demo)
+* **Local Docker Compose demo** for API + MLflow + supporting services
+* **Cloud deployment templates** for AWS SageMaker and GCP Vertex AI
+* **Project templates** including:
+
+  * Advanced Python development
+  * Machine Learning fundamentals
+  * Deep Learning forecasting
+  * Natural Language Processing
+  * MLOps pipeline examples
+  * Cloud deployment demonstrations
+* **CI/CD scaffolding**: pre-commit hooks and GitHub Actions templates
+
+## Quick Start (Local Demo)
+
 ```bash
 unzip ms-ml-engineering.zip -d .
 cd ms-ml-engineering/04_mlops_pipeline/api
-# build the API container (example)
+
+# Build the API container
 docker build -t ms-ml-api .
-# or run docker-compose in the project root to spin up api + mlflow (if docker is installed)
+
+# Or run docker-compose from the project root to start API + MLflow
 docker-compose up --build
 ```
 
-See each project folder for per-project run instructions.
+For detailed instructions, see the README in each project folder.
 
-Contact: your.name@example.com
+## Contact
+
+For questions or feedback, contact: [your.name@example.com](mailto:your.name@example.com)
