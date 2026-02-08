@@ -9,10 +9,24 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      # 1. Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Python 3.11
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: make install
-      - run: make test
+
+      # 3. Install dependencies using Makefile
+      - name: Install dependencies
+        run: make install
+        working-directory: 02_ml_basics/wig20_xgboost_forecast
+
+      # 4. Run tests using Makefile
+      - name: Run tests
+        run: make test
+        working-directory: 02_ml_basics/wig20_xgboost_forecast
