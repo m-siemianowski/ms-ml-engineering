@@ -1,0 +1,8 @@
+#!/bin/sh
+'''exec' "/home/siemson/Documents/AI/1. Career transition/Github ML Engineering/ms-ml-engineering/02_ml_basics/wig20_xgboost_forecast/.venv/bin/python3" "$0" "$@"
+' '''
+import sys
+from fontTools.__main__ import main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(main())

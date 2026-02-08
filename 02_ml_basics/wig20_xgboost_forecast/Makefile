@@ -1,4 +1,10 @@
+![CI](https://github.com/m-siemianowski/ms-ml-engineering/actions/workflows/ci.yml/badge.svg)
+
 .PHONY: help venv install test train predict clean
+
+VENV ?= .venv
+PYTHON := $(VENV)/bin/python
+PIP := $(VENV)/bin/pip
 
 help:
 	@echo "Available commands:"
@@ -10,22 +16,23 @@ help:
 	@echo "  make clean      - remove artifacts"
 
 venv:
-	python3 -m venv .venv
+	python3 -m venv $(VENV)
 
-install:
-	pip install --upgrade pip
-	pip install -r requirements_37.txt
+install: venv
+	$(PIP) install --upgrade pip
+	$(PIP) install -r requirements.txt
 
 test:
-	pytest -q --disable-warnings
+	$(PYTHON) -m pytest -q --disable-warnings
 
 train:
-	python -m src.train_model
+	$(PYTHON) -m src.train_model
 
 predict:
-	python -c "from src.predict import make_predictions; print(make_predictions())"
+	$(PYTHON) -c "from src.predict import make_predictions; print(make_predictions())"
 
 clean:
+	rm -rf $(VENV)
 	rm -rf .pytest_cache
 	rm -rf models/*.joblib
-
+	rm -rf __pycache__

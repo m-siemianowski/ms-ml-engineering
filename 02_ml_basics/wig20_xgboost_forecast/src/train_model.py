@@ -1,10 +1,12 @@
 import os, joblib
+from xml.parsers.expat import model
 import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_squared_error
 import xgboost as xgb
 from src.utils import load_config, load_data
 from src.features import build_features
+from xgboost import XGBRegressor
 
 def prepare_targets(df, target_col='close', horizon=5):
     """Prepare shifted target column for forecasting"""
@@ -44,13 +46,22 @@ def train_model():
     X_train, X_test = X.iloc[:split_idx], X.iloc[split_idx:]
     y_train, y_test = y.iloc[:split_idx], y.iloc[split_idx:]
 
-    model = xgb.XGBRegressor(**train_cfg.get('xgb_params', {}))
+
+    model = XGBRegressor(
+        n_estimators=200,
+        learning_rate=0.05,
+        max_depth=5,
+        early_stopping_rounds=20,   # <-- TUTAJ
+        eval_metric="rmse"
+    )
+
     model.fit(
-        X_train, y_train,
-        eval_set=[(X_train, y_train), (X_test, y_test)],
-        early_stopping_rounds=20,
+        X_train,
+        y_train,
+        eval_set=[(X_test, y_test)],
         verbose=False
     )
+
 
     preds = model.predict(X_test)
     rmse = mean_squared_error(y_test, preds, squared=False)
