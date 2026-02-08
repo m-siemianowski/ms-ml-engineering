@@ -1,38 +1,36 @@
-![CI](https://github.com/m-siemianowski/ms-ml-engineering/actions/workflows/ci.yml/badge.svg)
-
-.PHONY: help venv install test train predict clean
-
-VENV ?= .venv
-PYTHON := $(VENV)/bin/python
-PIP := $(VENV)/bin/pip
+.PHONY: help install test train predict clean
 
 help:
 	@echo "Available commands:"
-	@echo "  make venv       - create virtual environment"
 	@echo "  make install    - install dependencies"
 	@echo "  make test       - run unit tests"
 	@echo "  make train      - train model"
 	@echo "  make predict    - run prediction"
 	@echo "  make clean      - remove artifacts"
 
-venv:
-	python3 -m venv $(VENV)
+# Install dependencies
+install:
+	@echo "Installing dependencies..."
+	python3 -m pip install --upgrade pip
+	python3 -m pip install -r requirements.txt
 
-install: venv
-	$(PIP) install --upgrade pip
-	$(PIP) install -r requirements.txt
-
+# Run tests
 test:
-	$(PYTHON) -m pytest -q --disable-warnings
+	@echo "Running tests..."
+	python3 -m pytest -q --disable-warnings
 
+# Train model
 train:
-	$(PYTHON) -m src.train_model
+	@echo "Training model..."
+	python3 -m src.train_model
 
+# Make predictions
 predict:
-	$(PYTHON) -c "from src.predict import make_predictions; print(make_predictions())"
+	@echo "Making predictions..."
+	python3 -c "from src.predict import make_predictions; print(make_predictions())"
 
+# Clean artifacts
 clean:
-	rm -rf $(VENV)
+	@echo "Cleaning artifacts..."
 	rm -rf .pytest_cache
 	rm -rf models/*.joblib
-	rm -rf __pycache__
